@@ -1,13 +1,43 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arya Digital Services — Record Manager</title>
+<title>Arya Digital Services — BCA Record Manager | Banking, CSP & Software Solutions</title>
+<meta name="description" content="Arya Digital Services offers Banking Correspondent (BCA/CSP) record management software, digital banking solutions, and software development services. Smart solutions, stronger business.">
+<meta name="keywords" content="Arya Digital Services, BCA software, CSP software, banking correspondent software, customer record manager, CSP center, digital banking solutions, software solutions, website development, BC agent software, passbook printer alternative, internal record keeping software">
+<meta name="author" content="Arya Digital Services">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://passbook-printer.github.io/passbookprintsoftware/">
+
+<!-- Open Graph / Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arya Digital Services — BCA Record Manager">
+<meta property="og:description" content="Banking Correspondent (BCA/CSP) record management software by Arya Digital Services. Smart solutions, stronger business.">
+<meta property="og:site_name" content="Arya Digital Services">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Arya Digital Services — BCA Record Manager">
+<meta name="twitter:description" content="Banking Correspondent (BCA/CSP) record management software. Smart solutions, stronger business.">
+
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Arya Digital Services — BCA Record Manager",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Banking Correspondent (BCA/CSP) record management software for internal customer record keeping.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arya Digital Services"
+  }
+}
+</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -324,7 +354,7 @@ body {
       </div>
       <div class="form-body">
         <div class="field"><label>Customer Name</label><input type="text" value="Ramesh Kumar" disabled></div>
-        <div class="field"><label>Account / Reference Number</label><input type="text" value="AC1234567890" disabled></div>
+        <div class="field"><label>Account No</label><input type="text" value="AC1234567890" disabled></div>
         <div class="field"><label>Mobile Number</label><input type="text" value="9876543210" disabled></div>
         <div class="field">
           <label>Photo (optional)</label>
@@ -346,7 +376,7 @@ body {
           <div class="record-sub">BCA: Sample BCA | Code: BCA-001 | Location: Sample Town</div>
           <div class="record-body">
             <div class="record-fields">
-              <div class="rrow"><span class="rl">Account / Ref No.</span><span class="rv">AC1234567890</span></div>
+              <div class="rrow"><span class="rl">Account No</span><span class="rv">AC1234567890</span></div>
               <div class="rrow"><span class="rl">Mobile Number</span><span class="rv">9876543210</span></div>
               <div class="record-section-title">BCA Details</div>
               <div class="rrow"><span class="rl">BCA Name</span><span class="rv">Sample BCA</span></div>
@@ -464,7 +494,7 @@ body {
           <input type="text" id="f_name" placeholder="Full name" oninput="updateRecord()">
         </div>
         <div class="field">
-          <label>Account / Reference Number</label>
+          <label>Account No</label>
           <input type="text" id="f_acno" placeholder="Reference number" oninput="updateRecord()">
         </div>
         <div class="field">
@@ -496,7 +526,7 @@ body {
         <div class="record-sub" id="activeProfileLabel">BCA: — | Code: — | Location: —</div>
         <div class="record-body">
           <div class="record-fields">
-            <div class="rrow"><span class="rl">Account / Ref No.</span><span class="rv" id="p_acno">—</span></div>
+            <div class="rrow"><span class="rl">Account No</span><span class="rv" id="p_acno">—</span></div>
             <div class="rrow"><span class="rl">Mobile Number</span><span class="rv" id="p_mobile">—</span></div>
             <div class="record-section-title">BCA Details</div>
             <div class="rrow"><span class="rl">BCA Name</span><span class="rv" id="p_bcaname">—</span></div>
@@ -847,7 +877,7 @@ function printRecord() {
     + '<div class="print-header">' + logoHtml + cscBig + '</div>'
     + '<div class="print-title" style="margin-bottom:12pt;">' + name + '</div>'
     + '<div class="print-body"><div class="print-fields">'
-    + '<div class="print-row"><span class="print-rl">Account / Ref No.</span><span class="print-rv">' + acno + '</span></div>'
+    + '<div class="print-row"><span class="print-rl">Account No</span><span class="print-rv">' + acno + '</span></div>'
     + '<div class="print-row"><span class="print-rl">Mobile Number</span><span class="print-rv">' + mobile + '</span></div>'
     + '<div class="print-sect">BCA Details</div>'
     + '<div class="print-row"><span class="print-rl">BCA Name</span><span class="print-rv">' + (activeProfile.bcaname || '—') + '</span></div>'
