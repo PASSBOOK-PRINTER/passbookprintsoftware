@@ -198,21 +198,33 @@ body {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 1.8rem;
+  overflow: hidden;
 }
+.record-topbar {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.record-topbar-logo { width: 52px; height: 52px; border-radius: 8px; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); background:#fff; flex-shrink:0; }
+.record-topbar-name { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 0.3px; line-height: 1.1; text-transform: uppercase; }
+.record-topbar-tagline { font-size: 12.5px; font-style: italic; color: rgba(255,255,255,0.85); margin-top: 3px; }
+.record-inner { padding: 1.3rem 1.6rem 1.4rem; }
 .record-tag {
   display:inline-block; font-family: var(--mono); font-size: 11px; font-weight:700;
   color: var(--clay); border: 1px solid var(--clay); border-radius: 4px; padding: 3px 8px;
   margin-bottom: 1rem; letter-spacing: 0.4px;
 }
-.record-title { font-size: 20px; font-weight: 800; margin-bottom: 0.2rem; }
-.record-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--line); }
+.record-title { font-size: 16px; font-weight: 800; color: var(--ink); padding-bottom: 0.5rem; margin-bottom: 0.9rem; border-bottom: 2px solid var(--ink); }
+.record-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 1.4rem; }
 .record-body { display:flex; gap: 1.6rem; }
 .record-fields { flex:1; }
-.rrow { display:flex; padding: 9px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
-.rrow .rl { width: 150px; color: var(--muted); font-weight: 600; }
-.rrow .rv { font-weight: 700; font-family: var(--mono); }
-.record-section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--teal-dark); margin: 1.2rem 0 0.6rem; }
+.rrow { display:flex; align-items:baseline; gap:6px; padding: 5px 0 7px; border-bottom: 1.5px solid var(--ink); font-size: 14px; margin-bottom: 4px; }
+.rrow .rl { color: var(--ink); font-weight: 800; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; }
+.rrow .rl::after { content: ":"; margin: 0 6px 0 2px; }
+.rrow .rv { font-weight: 800; font-family: var(--mono); color: var(--teal-dark); font-size: 14.5px; }
+.record-section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink); text-decoration: underline; margin: 0.3rem 0 0.6rem; }
 .photo-col { width: 110px; flex-shrink:0; }
 .photo-frame { width: 100px; height: 128px; border: 1.5px solid var(--line); border-radius: 6px; overflow:hidden; background:#f2f0ea; display:flex; align-items:center; justify-content:center; color: var(--muted); font-size: 11px; }
 .photo-frame img { width:100%; height:100%; object-fit:cover; }
@@ -269,6 +281,11 @@ body {
 .admin-empty { text-align:center; color: var(--muted); font-size: 13px; padding: 1.5rem; }
 
 @media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
   body * { visibility: hidden; }
   #printArea, #printArea * { visibility: visible; }
   #printArea {
@@ -292,7 +309,7 @@ body {
     width: 180mm;
     border: 1.5pt solid #1c2128;
     border-radius: 6mm;
-    padding: 14mm;
+    padding: 0;
     position: relative;
     overflow: hidden;
     font-family: Arial, sans-serif;
@@ -307,18 +324,34 @@ body {
     z-index: 0;
   }
   .print-content { position: relative; z-index: 1; }
-  .print-header { text-align: center; margin-bottom: 10pt; }
-  .print-logo { width: 24mm; height: 24mm; border-radius: 50%; object-fit: cover; border: 1.5pt solid #23524b; margin: 0 auto 6pt; display: block; }
-  .print-csc-big { font-size: 16pt; font-weight: 800; color: #23524b; letter-spacing: 0.2pt; }
-  .print-title { font-size: 18pt; font-weight: 800; color: #1c2128; margin-bottom: 3pt; }
-  .print-sub { font-size: 10pt; color: #6b7280; margin-bottom: 2pt; }
-  .print-csc { font-size: 10pt; color: #6b7280; margin-bottom: 12pt; padding-bottom: 10pt; border-bottom: 1pt dashed #d8d3c6; }
+
+  /* Header bar — dark strip with CSC logo, name, tagline (own branding) */
+  .print-topbar {
+    background: linear-gradient(#2f6f66, #23524b);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 9pt;
+    padding: 9pt 14pt;
+    border-radius: 4pt 4pt 0 0;
+    margin: -1pt -1pt 0 -1pt;
+  }
+  .print-logo { width: 13mm; height: 13mm; border-radius: 3pt; object-fit: cover; border: 1pt solid rgba(255,255,255,0.4); flex-shrink: 0; display: block; background: #fff; }
+  .print-csc-big { font-size: 24pt; font-weight: 900; letter-spacing: 0.3pt; line-height: 1.1; text-transform: uppercase; color: #fff; }
+  .print-tagline { font-size: 10.5pt; font-style: italic; color: rgba(255,255,255,0.9); margin-top: 2pt; }
+
+  .print-inner { padding: 11pt 14pt 10pt; }
+  .print-section-title { font-size: 12.5pt; font-weight: 800; color: #1c2128; padding-bottom: 5pt; margin-bottom: 9pt; border-bottom: 1.5pt solid #1c2128; }
   .print-body { display: flex; gap: 12pt; }
   .print-fields { flex: 1; }
-  .print-row { display: flex; padding: 6pt 0; border-bottom: 1pt dashed #d8d3c6; font-size: 11pt; }
-  .print-rl { width: 110pt; color: #6b7280; font-weight: 600; }
-  .print-rv { font-weight: 700; font-family: 'Courier New', monospace; color: #1c2128; }
-  .print-sect { font-size: 9.5pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5pt; color: #23524b; margin: 10pt 0 5pt; }
+  .print-row { padding: 4pt 0 5pt; border-bottom: 1pt solid #1c2128; font-size: 10.5pt; margin-bottom: 3pt; }
+  .print-rl { font-weight: 800; text-transform: uppercase; letter-spacing: 0.3pt; color: #1c2128; }
+  .print-rl::after { content: ":"; margin: 0 4pt 0 1pt; }
+  .print-rv { font-weight: 800; font-family: 'Courier New', monospace; color: #2f6f66; margin-left: 4pt; }
+  .print-sect { font-size: 10.5pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3pt; color: #1c2128; text-decoration: underline; margin: 4pt 0 7pt; }
   .print-photo { width: 30mm; height: 38mm; flex-shrink: 0; border: 1.5pt solid #d8d3c6; border-radius: 4pt; overflow: hidden; }
   .print-photo img { width: 100%; height: 100%; object-fit: cover; }
   .print-photo-empty { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 9pt; }
@@ -368,25 +401,31 @@ body {
     </div>
     <div class="record-panel">
       <div class="record-card" style="position:relative; overflow:hidden;">
-        <div style="position:relative; z-index:1;">
-          <div style="text-align:center; margin-bottom:1rem;">
-            <div style="font-size:19px; font-weight:800; color:var(--teal-dark);">Arya Digital Services</div>
+        <div class="record-topbar">
+          <div style="width:52px;height:52px;border-radius:8px;background:rgba(255,255,255,0.15);"></div>
+          <div>
+            <div class="record-topbar-name">Arya Digital Services</div>
+            <div class="record-topbar-tagline">Smart Solutions, Stronger Business</div>
           </div>
-          <div class="record-title">Ramesh Kumar</div>
-          <div class="record-sub">BCA: Sample BCA | Code: BCA-001 | Location: Sample Town</div>
+        </div>
+        <div class="record-inner">
+          <div class="record-title">Customer Account Details</div>
           <div class="record-body">
             <div class="record-fields">
-              <div class="rrow"><span class="rl">Account No</span><span class="rv">AC1234567890</span></div>
+              <div class="rrow"><span class="rl">Customer Name</span><span class="rv">Ramesh Kumar</span></div>
+              <div class="rrow"><span class="rl">Account Number</span><span class="rv">AC1234567890</span></div>
+              <div class="rrow"><span class="rl">IFSC Code</span><span class="rv">SBIN0001234</span></div>
+              <div class="rrow"><span class="rl">Product Code</span><span class="rv">108</span></div>
               <div class="rrow"><span class="rl">Mobile Number</span><span class="rv">9876543210</span></div>
-              <div class="record-section-title">BCA Details</div>
-              <div class="rrow"><span class="rl">BCA Name</span><span class="rv">Sample BCA</span></div>
-              <div class="rrow"><span class="rl">BCA Code</span><span class="rv">BCA-001</span></div>
-              <div class="rrow"><span class="rl">Location</span><span class="rv">Sample Town</span></div>
             </div>
             <div class="photo-col">
               <div class="photo-frame">Photo</div>
             </div>
           </div>
+          <div class="record-section-title">BCA Details:</div>
+          <div class="rrow"><span class="rl">BCA Name</span><span class="rv">Sample BCA</span></div>
+          <div class="rrow"><span class="rl">BCA Code</span><span class="rv">BCA-001</span></div>
+          <div class="rrow"><span class="rl">Location</span><span class="rv">Sample Town</span></div>
         </div>
       </div>
     </div>
@@ -516,28 +555,33 @@ body {
 
     <div class="record-panel">
       <div class="record-card" style="position:relative; overflow:hidden;">
-        <img id="watermarkImg" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-25deg); width:220px; opacity:0.07; pointer-events:none; z-index:0;">
-        <div style="position:relative; z-index:1;">
-        <div style="text-align:center; margin-bottom:1rem;">
-          <img id="cardLogo" style="display:none; width:64px; height:64px; border-radius:50%; object-fit:cover; border:3px solid var(--teal); margin:0 auto 8px;">
-          <div id="p_cscname" style="font-size:19px; font-weight:800; color:var(--teal-dark); letter-spacing:0.2px;"></div>
+        <div class="record-topbar">
+          <img id="cardLogo" style="display:none; width:52px; height:52px; border-radius:8px; object-fit:cover; border:2px solid rgba(255,255,255,0.4); background:#fff;">
+          <div>
+            <div class="record-topbar-name" id="p_cscname"></div>
+            <div class="record-topbar-tagline" id="p_tagline"></div>
+          </div>
         </div>
-        <div class="record-title" id="p_name">Customer Name</div>
-        <div class="record-sub" id="activeProfileLabel">BCA: — | Code: — | Location: —</div>
+        <img id="watermarkImg" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-25deg); width:220px; opacity:0.07; pointer-events:none; z-index:0;">
+        <div class="record-inner" style="position:relative; z-index:1;">
+        <div class="record-title" id="p_titleRow">Customer Account Details</div>
         <div class="record-body">
           <div class="record-fields">
-            <div class="rrow"><span class="rl">Account No</span><span class="rv" id="p_acno">—</span></div>
+            <div class="rrow"><span class="rl">Customer Name</span><span class="rv" id="p_name">—</span></div>
+            <div class="rrow"><span class="rl">Account Number</span><span class="rv" id="p_acno">—</span></div>
+            <div class="rrow"><span class="rl">IFSC Code</span><span class="rv" id="p_ifsc">—</span></div>
+            <div class="rrow"><span class="rl">Product Code</span><span class="rv" id="p_productcode">—</span></div>
             <div class="rrow"><span class="rl">Mobile Number</span><span class="rv" id="p_mobile">—</span></div>
-            <div class="record-section-title">BCA Details</div>
-            <div class="rrow"><span class="rl">BCA Name</span><span class="rv" id="p_bcaname">—</span></div>
-            <div class="rrow"><span class="rl">BCA Code</span><span class="rv" id="p_bcacode">—</span></div>
-            <div class="rrow"><span class="rl">Location</span><span class="rv" id="p_location">—</span></div>
           </div>
           <div class="photo-col">
             <div class="photo-frame" id="photoPlaceholder">Photo</div>
             <img class="photo-frame" id="pb_photo" style="display:none;">
           </div>
         </div>
+        <div class="record-section-title">BCA Details:</div>
+        <div class="rrow"><span class="rl">BCA Name</span><span class="rv" id="p_bcaname">—</span></div>
+        <div class="rrow"><span class="rl">BCA Code</span><span class="rv" id="p_bcacode">—</span></div>
+        <div class="rrow"><span class="rl">Location</span><span class="rv" id="p_location">—</span></div>
         </div>
       </div>
     </div>
@@ -555,6 +599,9 @@ body {
         <div class="field"><label>BCA Code</label><input type="text" id="s_bcacode" placeholder="Your BCA code"></div>
         <div class="field"><label>Location</label><input type="text" id="s_location" placeholder="Village / area"></div>
         <div class="field"><label>CSC Center Name</label><input type="text" id="s_cscname" placeholder="Your CSC center's name"></div>
+        <div class="field"><label>Tagline</label><input type="text" id="s_tagline" placeholder="e.g. Aapki Seva, Hamara Vaada"></div>
+        <div class="field"><label>IFSC Code</label><input type="text" id="s_ifsc" placeholder="e.g. CNRB0003147"></div>
+        <div class="field"><label>Product Code</label><input type="text" id="s_productcode" placeholder="e.g. 108"></div>
         <div class="field">
           <label>Your Photo (used as watermark)</label>
           <div class="photo-upload-area">
@@ -568,8 +615,8 @@ body {
       </div>
     </div>
     <div class="record-panel">
-      <div class="record-card">
-        <div class="record-title" style="margin-bottom:1rem;">Saved BCA Profiles</div>
+      <div class="record-card" style="padding:1.8rem;">
+        <div class="record-title" style="margin-bottom:1rem; border-bottom:none; padding-bottom:0;">Saved BCA Profiles</div>
         <div class="profile-list" id="profileList">
           <div class="empty-state">No profile saved yet. Add one from the left panel.</div>
         </div>
@@ -616,7 +663,7 @@ var currentUid = null;
 var customerPhotoDataURL = null;
 var setupPhotoDataURL = null;
 var profiles = [];
-var activeProfile = { bcaname: '', bcacode: '', location: '', cscname: '', photo: null };
+var activeProfile = { bcaname: '', bcacode: '', location: '', cscname: '', tagline: '', ifsc: '', productcode: '', photo: null };
 var setupLocked = false;
 
 /* ---------- Screen switching ---------- */
@@ -738,18 +785,19 @@ function showPage(page) {
 }
 
 function updateRecord() {
-  document.getElementById('p_name').textContent   = document.getElementById('f_name').value || 'Customer Name';
-  document.getElementById('p_acno').textContent   = document.getElementById('f_acno').value || '—';
-  document.getElementById('p_mobile').textContent = document.getElementById('f_mobile').value || '—';
+  document.getElementById('p_name').textContent        = document.getElementById('f_name').value || '—';
+  document.getElementById('p_acno').textContent         = document.getElementById('f_acno').value || '—';
+  document.getElementById('p_mobile').textContent       = document.getElementById('f_mobile').value || '—';
 }
 
 function applyActiveProfileToRecord() {
   document.getElementById('p_bcaname').textContent = activeProfile.bcaname || '—';
   document.getElementById('p_bcacode').textContent = activeProfile.bcacode || '—';
   document.getElementById('p_location').textContent = activeProfile.location || '—';
-  document.getElementById('activeProfileLabel').textContent =
-    'BCA: ' + (activeProfile.bcaname || '—') + ' | Code: ' + (activeProfile.bcacode || '—') + ' | Location: ' + (activeProfile.location || '—');
   document.getElementById('p_cscname').textContent = activeProfile.cscname || '';
+  document.getElementById('p_tagline').textContent = activeProfile.tagline || '';
+  document.getElementById('p_ifsc').textContent = activeProfile.ifsc || '—';
+  document.getElementById('p_productcode').textContent = activeProfile.productcode || '—';
 
   var wm = document.getElementById('watermarkImg');
   if (activeProfile.photo) {
@@ -801,15 +849,18 @@ function handleSetupPhoto(event) {
 }
 
 function saveProfile() {
-  var bcaname  = document.getElementById('s_bcaname').value.trim();
-  var bcacode  = document.getElementById('s_bcacode').value.trim();
-  var location = document.getElementById('s_location').value.trim();
-  var cscname  = document.getElementById('s_cscname').value.trim();
+  var bcaname     = document.getElementById('s_bcaname').value.trim();
+  var bcacode     = document.getElementById('s_bcacode').value.trim();
+  var location    = document.getElementById('s_location').value.trim();
+  var cscname     = document.getElementById('s_cscname').value.trim();
+  var tagline     = document.getElementById('s_tagline').value.trim();
+  var ifsc        = document.getElementById('s_ifsc').value.trim();
+  var productcode = document.getElementById('s_productcode').value.trim();
   if (!bcaname || !bcacode) {
     alert('Please fill in BCA Name and BCA Code.');
     return;
   }
-  var profile = { bcaname: bcaname, bcacode: bcacode, location: location, cscname: cscname, photo: setupPhotoDataURL };
+  var profile = { bcaname: bcaname, bcacode: bcacode, location: location, cscname: cscname, tagline: tagline, ifsc: ifsc, productcode: productcode, photo: setupPhotoDataURL };
   profiles.push(profile);
   activeProfile = profile;
   setupLocked = true;
@@ -820,6 +871,9 @@ function saveProfile() {
   document.getElementById('s_bcacode').value = '';
   document.getElementById('s_location').value = '';
   document.getElementById('s_cscname').value = '';
+  document.getElementById('s_tagline').value = '';
+  document.getElementById('s_ifsc').value = '';
+  document.getElementById('s_productcode').value = '';
   document.getElementById('setupPhotoThumb').style.display = 'none';
   setupPhotoDataURL = null;
   applySetupLockUI();
@@ -858,9 +912,11 @@ function deleteProfile(i) {
 }
 
 function printRecord() {
-  var name   = document.getElementById('f_name').value   || 'Customer Name';
-  var acno   = document.getElementById('f_acno').value   || '—';
-  var mobile = document.getElementById('f_mobile').value || '—';
+  var name    = document.getElementById('f_name').value        || '—';
+  var acno    = document.getElementById('f_acno').value        || '—';
+  var ifsc    = activeProfile.ifsc        || '—';
+  var pcode   = activeProfile.productcode || '—';
+  var mobile  = document.getElementById('f_mobile').value      || '—';
 
   var photoHtml = customerPhotoDataURL
     ? '<img src="' + customerPhotoDataURL + '">'
@@ -870,20 +926,26 @@ function printRecord() {
     ? '<img class="print-logo" src="' + activeProfile.photo + '">'
     : '';
   var cscBig = activeProfile.cscname ? ('<div class="print-csc-big">' + activeProfile.cscname + '</div>') : '';
+  var taglineHtml = activeProfile.tagline ? ('<div class="print-tagline">' + activeProfile.tagline + '</div>') : '';
 
   var html =
       '<div class="print-page"><div class="print-card">'
     + '<div class="print-content">'
-    + '<div class="print-header">' + logoHtml + cscBig + '</div>'
-    + '<div class="print-title" style="margin-bottom:12pt;">' + name + '</div>'
+    + '<div class="print-topbar">' + logoHtml + '<div>' + cscBig + taglineHtml + '</div></div>'
+    + '<div class="print-inner">'
+    + '<div class="print-section-title">Customer Account Details</div>'
     + '<div class="print-body"><div class="print-fields">'
-    + '<div class="print-row"><span class="print-rl">Account No</span><span class="print-rv">' + acno + '</span></div>'
+    + '<div class="print-row"><span class="print-rl">Customer Name</span><span class="print-rv">' + name + '</span></div>'
+    + '<div class="print-row"><span class="print-rl">Account Number</span><span class="print-rv">' + acno + '</span></div>'
+    + '<div class="print-row"><span class="print-rl">IFSC Code</span><span class="print-rv">' + ifsc + '</span></div>'
+    + '<div class="print-row"><span class="print-rl">Product Code</span><span class="print-rv">' + pcode + '</span></div>'
     + '<div class="print-row"><span class="print-rl">Mobile Number</span><span class="print-rv">' + mobile + '</span></div>'
-    + '<div class="print-sect">BCA Details</div>'
+    + '</div><div class="print-photo">' + photoHtml + '</div></div>'
+    + '<div class="print-sect">BCA Details:</div>'
     + '<div class="print-row"><span class="print-rl">BCA Name</span><span class="print-rv">' + (activeProfile.bcaname || '—') + '</span></div>'
     + '<div class="print-row"><span class="print-rl">BCA Code</span><span class="print-rv">' + (activeProfile.bcacode || '—') + '</span></div>'
     + '<div class="print-row"><span class="print-rl">Location</span><span class="print-rv">' + (activeProfile.location || '—') + '</span></div>'
-    + '</div><div class="print-photo">' + photoHtml + '</div></div>'
+    + '</div>'
     + '</div></div></div>';
 
   document.getElementById('printArea').innerHTML = html;
